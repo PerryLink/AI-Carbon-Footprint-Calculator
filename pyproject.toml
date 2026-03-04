@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "ai-carbon-footprint"
+version = "0.1.0"
+description = "Calculate carbon emissions from AI compute workloads"
+authors = ["Chance Dean <novelnexusai@outlook.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+packages = [{include = "ai_carbon_footprint", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+click = "^8.1.7"
+rich = "^13.7.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
+black = "^23.12.1"
+ruff = "^0.1.9"
+mypy = "^1.8.0"
+
+[tool.poetry.scripts]
+ai-carbon-footprint = "ai_carbon_footprint.cli:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
