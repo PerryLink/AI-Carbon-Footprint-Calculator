@@ -68,10 +68,72 @@ GPU 能耗（kWh）   = TDP × 时长 × GPU 数量 × 利用率 / 1000
 二氧化碳排放（kg）= 总能耗 × 碳强度
 ```
 
-### 支持的 GPU
+## 支持的 GPU
 
-A100、A100-80GB、H100、H100-80GB、V100、A40、A30、A10、RTX 4090、RTX 4080、RTX 3090、RTX 3080、
-MI250X、MI210、MI100、TPU v4、TPU v3。
+| 型号 | 名称 | TDP (W) | 类别 |
+|------|------|---------|------|
+| A100 | NVIDIA A100 | 400 | datacenter |
+| A100-80GB | NVIDIA A100 80GB | 400 | datacenter |
+| H100 | NVIDIA H100 | 700 | datacenter |
+| H100-80GB | NVIDIA H100 80GB | 700 | datacenter |
+| V100 | NVIDIA V100 | 300 | datacenter |
+| A40 | NVIDIA A40 | 300 | datacenter |
+| A30 | NVIDIA A30 | 165 | datacenter |
+| A10 | NVIDIA A10 | 150 | datacenter |
+| RTX-4090 | NVIDIA RTX 4090 | 450 | consumer |
+| RTX-4080 | NVIDIA RTX 4080 | 320 | consumer |
+| RTX-3090 | NVIDIA RTX 3090 | 350 | consumer |
+| RTX-3080 | NVIDIA RTX 3080 | 320 | consumer |
+| MI250X | AMD MI250X | 560 | datacenter |
+| MI210 | AMD MI210 | 300 | datacenter |
+| MI100 | AMD MI100 | 300 | datacenter |
+| TPU-v4 | Google TPU v4 | 450 | tpu |
+| TPU-v3 | Google TPU v3 | 450 | tpu |
+
+## 碳强度数据
+
+| 地区 | 碳强度 (kg CO₂/kWh) |
+|------|---------------------|
+| global | 0.475 |
+| us | 0.386 |
+| eu | 0.276 |
+| china | 0.555 |
+| india | 0.708 |
+| uk | 0.233 |
+| france | 0.056 |
+| iceland | 0.010 |
+
+## 数据来源
+
+- GPU TDP 数据：NVIDIA、AMD、Google 官方规格
+- 碳强度数据：IEA（国际能源署）年度报告
+- PUE 数据：Uptime Institute 数据中心调研
+
+## 项目结构
+
+```
+ai-carbon-footprint/
+├── src/ai_carbon_footprint/
+│   ├── __init__.py          # 包初始化
+│   ├── __main__.py          # python -m 入口
+│   ├── cli.py               # CLI 接口
+│   ├── core.py              # 核心计算逻辑
+│   ├── data.py              # GPU 数据库与常量
+│   └── comparisons.py       # 具象化对比功能
+├── tests/                   # test_core.py、test_cli.py、test_comparisons.py
+├── pyproject.toml           # Poetry 配置
+├── LICENSE
+└── CONTRIBUTING.md
+```
+
+## 技术栈
+
+- **语言**：Python 3.9+
+- **包管理器**：Poetry
+- **CLI 框架**：Click
+- **终端 UI**：Rich
+- **测试**：pytest、pytest-cov
+- **代码质量**：black、ruff、mypy
 
 ## 开发
 
@@ -80,7 +142,17 @@ poetry install
 poetry run pytest --cov --cov-report=term-missing
 poetry run ruff check .
 poetry run black --check .
+poetry run mypy src/
 ```
+
+## 贡献
+
+查看 [CONTRIBUTING.md](CONTRIBUTING.md) 了解如何为本项目做出贡献。
+
+## 相关项目
+
+- [dsh-budget](https://github.com/PerryLink/dsh-budget) — 本项目被移植进的 DSH 插件
+- [PerryLink](https://github.com/PerryLink) — PerryLink DSH 插件家族
 
 ## 许可证
 
