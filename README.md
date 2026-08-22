@@ -1,6 +1,7 @@
 <div align="center">
 
 # AI-Carbon-Footprint-Calculator
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/ai-carbon-footprint-calculator)
 
 **A Python CLI tool for estimating CO₂ emissions from AI GPU compute workloads.**
 
